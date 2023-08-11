@@ -1,0 +1,25 @@
+import logoName from "../../assets/images/logoName.png";
+import { Link } from "react-router-dom";
+
+const BiggerHeader = ({ links }) => {
+  return (
+    <nav className="w-full h-[100px] md:py-[25px] md:px-[100px] flex justify-between">
+      <div>
+        <Link to={"/"}>
+          <img src={logoName} alt="She's Strong" className="h-[53px]" />
+        </Link>
+      </div>
+      <div className="flex w-[40%] justify-between ">
+        {links.map((link) => {
+          return (
+            <Link key={link.name + link.link} to={link.link}>
+              <p className="font-display text-3xl">{link.name}</p>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
+};
+
+export default BiggerHeader;
