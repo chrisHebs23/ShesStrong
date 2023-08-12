@@ -8,13 +8,13 @@ import Routers from "../routes/Routers";
 
 const Layout = () => {
   return (
-    <>
+    <div>
       <Header />
-      <main>
+      <main className="h-screen">
         <Routers />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BiggerHeader = ({ links }) => {
   return (
-    <nav className="w-full h-[100px] md:py-[25px] md:px-[100px] flex justify-between">
+    <nav className="w-full h-[100px] md:py-[25px] md:px-[100px] flex justify-between items-center">
       <div>
         <Link to={"/"}>
           <img src={logoName} alt="She's Strong" className="h-[53px]" />

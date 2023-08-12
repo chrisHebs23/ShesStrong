@@ -6,4 +6,16 @@
   .btn {
     @apply w-auto py-[5px] px-[50] rounded-full h-auto border-primary border-1 hover:border-none hover:bg-highlight;
   }
+
+  hr {
+    @apply bg-highlight border-0 h-2 w-8;
+  }
+
+  .header {
+    @apply font-display;
+  }
+
+  p {
+    @apply font-body text-lg;
+  }
 }
