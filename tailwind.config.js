@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "hero-image": "url(./src/assets/images/BigLogo.png)",
+      },
       colors: {
         primary: "#111111",
         secondary: "#DCDCDC",
@@ -35,6 +38,15 @@ export default {
           "-webkit-transform": "scaleX(-1)",
           transform: "scaleX(-1)",
         },
+      },
+      fontSize: {
+        "btn-font": [
+          "1.5rem",
+          {
+            lineHeight: "1.3rem",
+            letterSpacing: "0.01em",
+          },
+        ],
       },
     },
   },

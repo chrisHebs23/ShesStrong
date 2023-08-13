@@ -5,11 +5,11 @@ import Layout from "./Layout/Layout";
 
 function App() {
   return (
-    <React.StrictMode>
-      <BrowserRouter>
-        <Layout />
-      </BrowserRouter>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
+    // </React.StrictMode>
   );
 }
 

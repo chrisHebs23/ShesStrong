@@ -12,7 +12,7 @@ const SmallerHeader = ({ links }) => {
   return (
     <nav className="w-full px-1 h-[100px] flex justify-between items-center relative">
       <div>
-        <Link to={"/"}>
+        <Link to={"/"} onClick={handleOpen}>
           <img src={logoImg} alt="She's Strong" className="h-[60px]" />
         </Link>
       </div>
@@ -30,10 +30,14 @@ const SmallerHeader = ({ links }) => {
             className="cursor-pointer w-12 z-10"
             size={40}
           />
-          <div className="fixed flex flex-col w-screen h-screen justify-center items-center bg-primary/50 left-0 top-20 ">
+          <div className="fixed flex flex-col w-screen h-screen justify-center items-center bg-primary/70 left-0 top-20 z-30 ">
             {links.map((link) => {
               return (
-                <Link key={link.name + link.link} to={link.link}>
+                <Link
+                  key={link.name + link.link}
+                  to={link.link}
+                  onClick={handleOpen}
+                >
                   <p className="font-display text-3xl my-4 animate-slide-in">
                     {link.name}
                   </p>

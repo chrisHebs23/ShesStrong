@@ -4,7 +4,10 @@
 
 @layer components {
   .btn {
-    @apply w-auto py-[5px] px-[50] rounded-full h-auto border-primary border-1 hover:border-none hover:bg-highlight;
+    @apply font-display h-12 flex justify-center items-center text-btn-font my-4 py-[10px] mr-5 px-[45px] rounded-full border-secondary border hover:border-none hover:bg-highlight hover:text-primary;
+  }
+  .btn-2 {
+    @apply btn border bg-secondary text-primary;
   }
 
   hr {
