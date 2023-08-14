@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logoImg from "../../assets/images/logoImg.png";
 import { useState } from "react";
 import { MdOutlineSort, MdClose } from "react-icons/md";
+import { HashLink } from "react-router-hash-link";
 
 const SmallerHeader = ({ links }) => {
   const [open, setOpen] = useState(false);
@@ -31,8 +32,14 @@ const SmallerHeader = ({ links }) => {
             size={40}
           />
           <div className="fixed flex flex-col w-screen h-screen justify-center items-center bg-primary/70 left-0 top-20 z-30 ">
-            {links.map((link) => {
-              return (
+            {links.map((link) =>
+              link.hash ? (
+                <HashLink key={link.name + link.link} smooth to="/#">
+                  <p className="font-display text-3xl my-4 animate-slide-in">
+                    {link.name}
+                  </p>
+                </HashLink>
+              ) : (
                 <Link
                   key={link.name + link.link}
                   to={link.link}
@@ -42,8 +49,8 @@ const SmallerHeader = ({ links }) => {
                     {link.name}
                   </p>
                 </Link>
-              );
-            })}
+              )
+            )}
           </div>
         </div>
       )}

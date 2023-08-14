@@ -1,3 +1,4 @@
+import { HashLink } from "react-router-hash-link";
 import logoName from "../../assets/images/logoName.png";
 import { Link } from "react-router-dom";
 
@@ -10,13 +11,17 @@ const BiggerHeader = ({ links }) => {
         </Link>
       </div>
       <div className="flex w-[40%] justify-between ">
-        {links.map((link) => {
-          return (
+        {links.map((link) =>
+          link.hash ? (
+            <HashLink key={link.name + link.link} smooth to={link.link}>
+              <p className="font-display text-3xl ">{link.name}</p>
+            </HashLink>
+          ) : (
             <Link key={link.name + link.link} to={link.link}>
               <p className="font-display text-3xl">{link.name}</p>
             </Link>
-          );
-        })}
+          )
+        )}
       </div>
     </nav>
   );
