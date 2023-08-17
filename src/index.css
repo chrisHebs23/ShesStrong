@@ -10,15 +10,19 @@
     @apply btn border bg-secondary text-primary;
   }
 
-  hr {
-    @apply bg-highlight border-0 h-2 w-8;
-  }
-
   .header {
     @apply font-display;
   }
 
   p {
     @apply font-body text-lg;
+  }
+
+  h2 {
+    @apply font-display text-4xl;
+  }
+
+  span {
+    @apply underline decoration-highlight;
   }
 }

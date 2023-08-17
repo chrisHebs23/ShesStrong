@@ -21,7 +21,7 @@ const HeroSection = () => {
           <h1 className="font-display text-5xl mb-3 w-full md:w-[65%] lg:w-[50%] xl:w-[45%]">
             Unleash Your Inner Strength with <strong>She&apos;s Strong</strong>:
             &nbsp;
-            <span className="underline decoration-highlight underline-offset-4">
+            <span className="underline-offset-4">
               Empowering Your Fitness Jou
             </span>
             rney

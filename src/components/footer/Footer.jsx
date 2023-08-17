@@ -10,13 +10,21 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: "Facebook", src: <BsFacebook size={40} />, link: "facebook.com" },
+    {
+      name: "Facebook",
+      src: <BsFacebook size={40} />,
+      link: "https://www.facebook.com",
+    },
     {
       name: "Instagram",
       src: <BsInstagram size={40} />,
-      link: "instagram.com",
+      link: "https://www.instagram.com",
     },
-    { name: "Twitter", src: <BsTwitter size={40} />, link: "twitter.com" },
+    {
+      name: "Twitter",
+      src: <BsTwitter size={40} />,
+      link: "https://www.twitter.com",
+    },
   ];
 
   return (
