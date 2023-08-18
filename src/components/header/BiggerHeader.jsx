@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { HashLink } from "react-router-hash-link";
 import logoName from "../../assets/images/logoName.png";
 import { Link } from "react-router-dom";

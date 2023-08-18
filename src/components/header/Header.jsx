@@ -10,11 +10,14 @@ const Header = () => {
     { name: "faqs", link: "/faq", hash: true },
   ];
   const screenSize = useScreenSize();
-
-  return screenSize > 1024 ? (
-    <BiggerHeader links={links} />
-  ) : (
-    <SmallerHeader links={links} />
+  return (
+    <div className="fixed top-0 z-30 bg-primary w-full h-[100px]">
+      {screenSize > 1024 ? (
+        <BiggerHeader links={links} />
+      ) : (
+        <SmallerHeader links={links} />
+      )}
+    </div>
   );
 };
 

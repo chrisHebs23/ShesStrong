@@ -1,7 +1,9 @@
 // import React from "react";
 import workout from "../../../assets/video/workout.mp4";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const HeroSection = () => {
+  const screenSize = useScreenSize();
   return (
     <section className="relative h-[700px] w-full mb-14">
       {/* Video background */}
@@ -13,14 +15,14 @@ const HeroSection = () => {
           muted
           className="absolute w-[100%] object-cover h-full -z-10 "
         />
-        <div className="relative md:bg-primary/0 bg-primary/60 sm:bg-gradient-to-r from-primary from-10% via-primary/60 via-50%  to-primary/0 z-0 w-full h-full"></div>
+        <div className="relative md:bg-primary/0 bg-primary/70 md:bg-gradient-to-r from-primary from-10% via-primary/60 via-50%  to-primary/0 z-0 w-full h-full"></div>
       </div>
       <div className="relative z-10 flex justify-start mx-1 xl:mx-40 lg:mx-24 md:mx-10 items-center h-full sm:px-2">
         {/* Hero text */}
         <div className="w-full md:w-[75%] flex flex-col ">
           <h1 className="font-display text-5xl mb-3 w-full md:w-[65%] lg:w-[50%] xl:w-[45%]">
-            Unleash Your Inner Strength with <strong>She&apos;s Strong</strong>:
-            &nbsp;
+            Unleash Your Inner Strength with{" "}
+            <strong>She&apos;s Strong: </strong>
             <span className="underline-offset-4">
               Empowering Your Fitness Jou
             </span>

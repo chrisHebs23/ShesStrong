@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      <main className="h-full flex flex-col ">
+      <main className="h-full flex flex-col mt-[100px] ">
         <Router />
       </main>
       <Footer />
