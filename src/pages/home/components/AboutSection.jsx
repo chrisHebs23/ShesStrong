@@ -2,9 +2,9 @@ import logo from "../../../assets/images/logo.png";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="w-full my-8">
-      <h2 className=" ">
-        <span className="">who we a</span>re
+    <section className="w-full my-8">
+      <h2 id="about">
+        <span>who we are</span>
       </h2>
       <div className="flex flex-col md:flex-row justify-between w-full items-center my-7">
         <div className="w-full md:w-[60%] lg:w-[70%] h-full">

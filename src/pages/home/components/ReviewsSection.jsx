@@ -1,7 +1,7 @@
 import React from "react";
 
 const ReviewsSection = () => {
-  return <div>Reviews</div>;
+  return <section>Reviews</section>;
 };
 
 export default ReviewsSection;

@@ -1,7 +1,7 @@
 import React from "react";
 
 const BlogSubsSection = () => {
-  return <div>Blog Sub Section</div>;
+  return <section>Blog Sub Section</section>;
 };
 
 export default BlogSubsSection;

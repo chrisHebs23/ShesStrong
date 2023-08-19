@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  section {
+    @apply my-8;
+  }
+
   .btn {
-    @apply font-display h-12 flex justify-center items-center text-btn-font my-4 py-[10px] mr-5 px-[45px] rounded-full border-secondary border hover:border-none hover:bg-highlight hover:text-primary;
+    @apply font-display h-12 flex justify-center items-center text-btn-font my-4 py-[10px] px-[45px] rounded-full border-secondary border hover:border-none hover:bg-highlight hover:text-primary;
   }
   .btn-2 {
     @apply btn border bg-secondary text-primary;
@@ -22,7 +26,51 @@
     @apply font-display text-4xl;
   }
 
-  span {
-    @apply underline decoration-highlight;
+  h3 {
+    @apply font-display text-2xl;
   }
+
+  .card {
+    @apply grid grid-cols-1 place-items-center bg-secondary/10 w-[75%] lg:w-[24%] md:w-[30%] sm:w-[48%] my-2 p-3 backdrop-blur-md;
+  }
+}
+
+span {
+  color: #dcdcdc;
+  position: relative;
+  background: none;
+  width: 100%;
+}
+
+span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  left: 0;
+  height: 5px;
+  bottom: 5px;
+  background: linear-gradient(
+    111.3deg,
+    rgba(72, 253, 74, 1) 9.6%,
+    rgba(72, 253, 74, 0) 100.6%
+  );
+}
+
+#fill path {
+  fill: #48fd4a;
+}
+
+.svg-fill path {
+  fill: #dcdcdc;
+}
+
+mark {
+  text-decoration: underline;
+  background-color: transparent;
+  color: #dcdcdc;
+  text-decoration-color: #48fd4a;
+}
+
+#about {
+  scroll-margin-top: 110px;
 }

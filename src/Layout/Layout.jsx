@@ -5,9 +5,9 @@ import Router from "../routes/Router";
 
 const Layout = () => {
   return (
-    <div>
+    <div className=" ">
       <Header />
-      <main className="h-full flex flex-col mt-[100px] ">
+      <main className="h-full flex flex-col mt-[100px]">
         <Router />
       </main>
       <Footer />
