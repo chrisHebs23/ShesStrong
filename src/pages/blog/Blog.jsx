@@ -14,8 +14,8 @@ const Blog = () => {
           <div
             key={i}
             className={`${
-              i == 0 ? "lg:w-full lg:h-[500px]" : "lg:w-[46%]"
-            } w-full h-[350px] `}
+              i == 0 ? "lg:w-full lg:h-[500px]" : "lg:w-[49%]"
+            } w-full h-[350px] hover:scale-105 transition ease-in-out delay-150 relative`}
           >
             <Link to={`/blog/${article.id}`}>
               <BlogCards article={article} i={i} />

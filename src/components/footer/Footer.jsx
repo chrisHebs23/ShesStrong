@@ -28,12 +28,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="flex justify-center items-center my-16 mx-3 screen-padding">
-      <div className="md:w-2/4">
-        <div className="flex md:flex-row flex-col justify-between mb-8">
+    <footer className="flex justify-center items-center my-16 screen-padding">
+      <div className="w-full  ">
+        <div className="flex md:flex-row flex-col justify-evenly mb-8">
           <div className="mb-6 ">
-            <h4 className="header md:text-3xl text-2xl">Terms</h4>
-            <hr className="w-10" />
+            <h4 className="header md:text-3xl text-2xl">
+              <span>Terms</span>
+            </h4>
+
             {termLinks.map((term) => (
               <Link key={term.name + termLinks.link} to={term.link}>
                 <p>{term.name}</p>
@@ -41,8 +43,10 @@ const Footer = () => {
             ))}
           </div>
           <div className="mb-6 ">
-            <h4 className="header md:text-3xl text-2xl ">Follow Us</h4>
-            <hr className="w-16" />
+            <h4 className="header md:text-3xl text-2xl ">
+              <span>Follow Us</span>
+            </h4>
+
             <div className="flex flex-row  mt-5">
               {socialLinks.map((social) => (
                 <a
