@@ -4,6 +4,9 @@ import FAQ from "../pages/faq/FAQ";
 import Bookings from "../pages/bookings/Bookings";
 import TermsAndConditions from "../pages/termsAndConditions/TermsAndConditions";
 import PrivacyPolicy from "../pages/privacyPolicy/PrivacyPolicy";
+import Contact from "../pages/contact/Contact";
+import Blog from "../pages/blog/Blog";
+import Post from "../pages/blog/components/Post";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -16,6 +19,9 @@ const Router = () => {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<Post />} />
       </Routes>
     </>
   );

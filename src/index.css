@@ -41,6 +41,10 @@
   .star path {
     @apply fill-highlight border-2 border-primary;
   }
+
+  label {
+    @apply font-display text-2xl;
+  }
 }
 
 span {

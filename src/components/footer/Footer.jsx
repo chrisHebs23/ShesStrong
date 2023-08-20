@@ -28,7 +28,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="flex justify-center items-center my-16 mx-3 md:h-[300px] ">
+    <footer className="flex justify-center items-center my-16 mx-3 screen-padding">
       <div className="md:w-2/4">
         <div className="flex md:flex-row flex-col justify-between mb-8">
           <div className="mb-6 ">
