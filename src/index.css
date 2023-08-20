@@ -45,6 +45,9 @@
   label {
     @apply font-display text-2xl;
   }
+  .admin-link {
+    @apply flex items-center hover:text-highlight my-5;
+  }
 }
 
 span {
