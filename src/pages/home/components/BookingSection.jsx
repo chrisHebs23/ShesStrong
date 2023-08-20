@@ -1,4 +1,4 @@
-import PricingCards from "./reusabel/PricingCards";
+import PricingCards from "./reusable/PricingCards";
 import { pricing } from "../../../assets/data/pricing";
 
 const BookingSection = () => {

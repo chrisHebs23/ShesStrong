@@ -21,7 +21,7 @@ export const services = [
       </svg>
     ),
     service: "Virtual Training",
-    text: "Over training from the comfort of your home. Helping you achieve your goals and keep you accountable.",
+    text: "Embrace the power of virtual training from the comfort of your space! Our online workouts are your stylish date with fitness. No more traffic jams—just you, your mat, and a whole lot of fabulousness.",
   },
   {
     img: (
@@ -67,7 +67,7 @@ export const services = [
       </svg>
     ),
     service: "Injury Recovery Training",
-    text: "Don't let an injury get int the way of getting fit and into shape.",
+    text: "Ladies, let's conquer those setbacks together! Our injury recovery program is like a spa day for your body. We'll pamper those recovering muscles and get you strutting back into action.",
   },
   {
     img: (
@@ -99,7 +99,7 @@ export const services = [
       </svg>
     ),
     service: "Build Muscle",
-    text: "Together we will get those guns ready for the summer",
+    text: "Sculpt and slay, queens! Our muscle-building magic is designed to help you own your curves and build strength like a goddess. Time to define those lines and unleash your inner wonder woman!",
   },
   {
     img: (
@@ -123,6 +123,6 @@ export const services = [
       </svg>
     ),
     service: "Fat Loss",
-    text: "Time to lose those stubborn pounds ",
+    text: "Unleash your inner fire, beauties! Our fat loss journey is like a stylish makeover for your body. Wave goodbye to unwanted fluff and hello to fierce confidence that radiates from within!",
   },
 ];

@@ -5,7 +5,7 @@ import Router from "../routes/Router";
 
 const Layout = () => {
   return (
-    <div className=" ">
+    <div className="relative">
       <Header />
       <main className="h-full flex flex-col mt-[100px]">
         <Router />

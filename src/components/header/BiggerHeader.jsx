@@ -8,7 +8,7 @@ const BiggerHeader = ({ links }) => {
     <nav className="w-full h-[100px] md:py-[25px] flex justify-between items-center">
       <div>
         <Link to={"/"}>
-          <img src={logoName} alt="She's Strong" className="h-[53px]" />
+          <img src={logoName} alt="She's Strong" className="h-[53px] -ml-3" />
         </Link>
       </div>
       <div className="flex lg:w-[45%] md:w-[40%] justify-between items-center">

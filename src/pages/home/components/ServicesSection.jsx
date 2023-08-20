@@ -7,14 +7,17 @@ const ServicesSection = () => {
       <h2>
         <span>What We Do</span>
       </h2>
-      <div className="flex justify-center  gap-3 sm:justify-between flex-wrap ">
+      <div className="flex justify-center gap-3 sm:justify-between flex-wrap ">
         {services.map((service, i) => (
-          <div key={i} className="card md:grid-rows-[110px_30px_150px]">
-            <div id="cut" className=" w-[100px] h-[100px] mb-3">
+          <div key={i} className="card ">
+            <div id="cut" className="w-[100px] h-[100px] mb-3">
               {service.img}
             </div>
-            <h3 className="my-3 text-center">{service.service}</h3>
-            <p className="my-3 text-center">{service.text}</p>
+
+            <h3 className="my-3 text-center flex self-start">
+              {service.service}
+            </h3>
+            <p className="my-3 text-center ">{service.text}</p>
           </div>
         ))}
       </div>

@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .screen-padding {
+    @apply px-5 xl:px-32 md:px-10;
+  }
+
   section {
     @apply my-8;
   }
@@ -31,7 +35,11 @@
   }
 
   .card {
-    @apply grid grid-cols-1 place-items-center bg-secondary/10 w-[75%] lg:w-[24%] md:w-[30%] sm:w-[48%] my-2 p-3 backdrop-blur-md;
+    @apply grid grid-cols-1 place-items-center bg-secondary/10 w-full lg:w-[24%] md:w-[30%] sm:w-[48%] my-2 p-3 backdrop-blur-md;
+  }
+
+  .star path {
+    @apply fill-highlight border-2 border-primary;
   }
 }
 
