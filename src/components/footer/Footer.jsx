@@ -33,7 +33,7 @@ const Footer = () => {
         <div className="flex md:flex-row flex-col justify-evenly mb-8">
           <div className="mb-6 ">
             <h4 className="header md:text-3xl text-2xl">
-              <span>Terms</span>
+              <span className="underline-effect">Terms</span>
             </h4>
 
             {termLinks.map((term) => (
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
           <div className="mb-6 ">
             <h4 className="header md:text-3xl text-2xl ">
-              <span>Follow Us</span>
+              <span className="underline-effect">Follow Us</span>
             </h4>
 
             <div className="flex flex-row  mt-5">

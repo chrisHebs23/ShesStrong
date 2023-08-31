@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <div className="screen-padding bg-hero-image w-full bg-cover bg-center my-10">
       <h2 className="mb-5">
-        <span>Contact Us</span>
+        <span className="underline-effect">Contact Us</span>
       </h2>
       <p className="mb-5">
         Hello, curious minds and future fit-fam members! Got questions?

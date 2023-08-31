@@ -5,7 +5,7 @@ const ServicesSection = () => {
   return (
     <section>
       <h2>
-        <span>What We Do</span>
+        <span className="underline-effect">What We Do</span>
       </h2>
       <div className="flex justify-center gap-3 sm:justify-between flex-wrap ">
         {services.map((service, i) => (

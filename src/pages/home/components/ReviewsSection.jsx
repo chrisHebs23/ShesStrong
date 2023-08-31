@@ -5,7 +5,7 @@ const ReviewsSection = () => {
   return (
     <section className="">
       <h2 className="my-5">
-        <span>Reviews</span>
+        <span className="underline-effect">Reviews</span>
       </h2>
       <div className="w-full relative">
         <div className="w-full flex flex-nowrap overflow-x-scroll justify-between gap-16 scroll-smooth snap-x">

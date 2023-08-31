@@ -6,7 +6,7 @@ const Challenges = () => {
   return (
     <div className="screen-padding">
       <h2 className="my-5">
-        <span>Challenges</span>
+        <span className="underline-effect">Challenges</span>
       </h2>
       <p>
         Ready to level up your fitness game? Join the

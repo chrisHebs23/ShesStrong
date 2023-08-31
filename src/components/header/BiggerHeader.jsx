@@ -2,6 +2,7 @@
 import { HashLink } from "react-router-hash-link";
 import logoName from "../../assets/images/logoName.png";
 import { Link } from "react-router-dom";
+import ClerkLogin from "./ClerkLogin";
 
 const BiggerHeader = ({ links }) => {
   return (
@@ -23,6 +24,7 @@ const BiggerHeader = ({ links }) => {
             </Link>
           )
         )}
+        <ClerkLogin />
       </div>
     </nav>
   );

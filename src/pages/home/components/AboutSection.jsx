@@ -4,7 +4,7 @@ const AboutSection = () => {
   return (
     <section className="w-full my-8">
       <h2 id="about">
-        <span>who we are</span>
+        <span className="underline-effect">who we are</span>
       </h2>
       <div className="flex flex-col md:flex-row justify-between w-full items-center my-7">
         <div className="w-full md:w-[60%] lg:w-[70%] h-full">
