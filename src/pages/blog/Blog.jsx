@@ -7,7 +7,7 @@ const Blog = () => {
   return (
     <div className="screen-padding">
       <h2>
-        <span>Blog Articles</span>
+        <span className="underline-effect">Blog Articles</span>
       </h2>
       <div className="flex flex-wrap justify-between gap-y-5 my-5">
         {dummyArticles.toReversed().map((article, i) => (

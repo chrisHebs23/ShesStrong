@@ -50,14 +50,14 @@
   }
 }
 
-span {
+.underline-effect {
   color: #dcdcdc;
   position: relative;
   background: none;
   width: 100%;
 }
 
-span::before {
+.underline-effect::before {
   content: "";
   position: absolute;
   width: 100%;

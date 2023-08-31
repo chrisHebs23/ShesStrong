@@ -4,6 +4,7 @@ import logoImg from "../../assets/images/logoImg.png";
 import { useState } from "react";
 import { MdOutlineSort, MdClose } from "react-icons/md";
 import { HashLink } from "react-router-hash-link";
+import ClerkLogin from "./ClerkLogin";
 
 const SmallerHeader = ({ links }) => {
   const [open, setOpen] = useState(false);
@@ -57,6 +58,7 @@ const SmallerHeader = ({ links }) => {
                 </Link>
               )
             )}
+            <ClerkLogin handleOpen={handleOpen} />
           </div>
         </div>
       )}

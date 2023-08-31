@@ -5,9 +5,9 @@ import SmallerHeader from "./SmallerHeader";
 const Header = () => {
   const links = [
     { name: "who we are", link: "/#about", hash: true },
-    { name: "challenges", link: "/challenges", hash: true },
-    { name: "blog", link: "/blog", hash: true },
-    { name: "faqs", link: "/faq", hash: true },
+    { name: "challenges", link: "/challenges", hash: false },
+    { name: "blog", link: "/blog", hash: false },
+    { name: "faqs", link: "/faq", hash: false },
   ];
   const screenSize = useScreenSize();
   return (
