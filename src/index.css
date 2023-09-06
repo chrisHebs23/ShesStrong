@@ -48,6 +48,12 @@
   .admin-link {
     @apply flex items-center hover:text-highlight my-5;
   }
+  .account-form-input {
+    @apply w-full md:w-[45%] flex flex-col;
+  }
+  .account-form-input input {
+    @apply bg-primary/80 h-[35px] text-secondary px-2;
+  }
 }
 
 .underline-effect {
@@ -79,7 +85,7 @@
   fill: #dcdcdc;
 }
 
-mark {
+.mark {
   text-decoration: underline;
   background-color: transparent;
   color: #dcdcdc;

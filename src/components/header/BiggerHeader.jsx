@@ -4,7 +4,7 @@ import logoName from "../../assets/images/logoName.png";
 import { Link } from "react-router-dom";
 import ClerkLogin from "./ClerkLogin";
 
-const BiggerHeader = ({ links }) => {
+const BiggerHeader = ({ links, handleAuth }) => {
   return (
     <nav className="w-full h-[100px] md:py-[25px] flex justify-between items-center">
       <div>
@@ -24,6 +24,7 @@ const BiggerHeader = ({ links }) => {
             </Link>
           )
         )}
+
         <ClerkLogin />
       </div>
     </nav>
