@@ -21,8 +21,28 @@ import UserDashboard from "../pages/user/UserDashboard";
 import Onboarding from "../pages/user/components/Onboarding";
 import Subscription from "../pages/user/components/Subscription";
 import SuccessDisplay from "../pages/user/components/SuccessDisplay";
+import { useState, useEffect } from "react";
 
 const Router = () => {
+  let [message, setMessage] = useState("");
+  let [success, setSuccess] = useState(false);
+  let [sessionId, setSessionId] = useState("");
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      setSuccess(true);
+      setSessionId(query.get("session_id"));
+    }
+    if (query.get("canceled")) {
+      setSuccess(false);
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -100,10 +120,11 @@ const Router = () => {
       />
       <Route
         path="/success"
+        exact="false"
         element={
           <>
             <SignedIn>
-              <SuccessDisplay />
+              <SuccessDisplay sessionId={sessionId} />
             </SignedIn>
             <SignedOut>
               <RedirectToSignIn />

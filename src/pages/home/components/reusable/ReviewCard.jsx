@@ -6,11 +6,11 @@ const ReviewCard = ({ review }) => {
   const stars = Array.from({ length: STAR_COUNT }, (i) => <div key={i} />);
   let i;
   for (i = 0; i < review.rating; i++) {
-    stars[i] = <FaStar className="star" size={30} />;
+    stars[i] = <FaStar className="star" key={i} size={30} />;
   }
   if (review.rating % 1 != 0) {
     stars[i - 1] = (
-      <FaStarHalf className="star border border-primary" size={30} />
+      <FaStarHalf className="star border border-primary" key={i} size={30} />
     );
   }
   // if value is a decimal, add a half star

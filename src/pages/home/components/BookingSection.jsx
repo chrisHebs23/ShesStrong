@@ -9,7 +9,7 @@ const BookingSection = () => {
       </h2>
       <div className="flex justify-center gap-3 sm:justify-between  flex-wrap ">
         {pricing.map((price, i) => (
-          <PricingCards key={i} data={price} />
+          <PricingCards key={i} price={price} />
         ))}
       </div>
     </section>
