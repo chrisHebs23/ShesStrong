@@ -24,8 +24,8 @@ const AccountProfile = ({ user, btnTitle, redirectUrl }) => {
           },
           body: JSON.stringify({
             userId: user.id,
-            email: user.email.emailAddress,
-            name: user.fullName,
+            email: user.email,
+            name: user.name,
             image: user.image,
           }),
         }

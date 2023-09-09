@@ -95,3 +95,7 @@
 #about {
   scroll-margin-top: 110px;
 }
+
+#setting:hover path {
+  fill: #48fd4a;
+}

@@ -1,29 +1,27 @@
 /* eslint-disable react/prop-types */
+import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import { useCalendlyEventListener, InlineWidget } from "react-calendly";
 
 const MakeAppointment = ({ user }) => {
   // useEffect(() => {
-  //   const getUser = async () => {
-  //     await
-  //   }
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-
-  // useCalendlyEventListener({
-  //   onEventScheduled: (e) => {
-  //   console.log(e.data.payload),
-  // }
-  // });
-
+  //   (async function () {
+  //     const cal = await getCalApi();
+  //     cal("on", {
+  //       action: "bookingSuccessful",
+  //       callback: (e) => ,
+  //     });
+  //   })();
+  // }, []);
   return (
     <div>
-      <InlineWidget
-        url="https://calendly.com/shes-strong"
-        prefill={{ name: user.firstName, email: user.primaryEmailAddress }}
+      <Cal
+        calLink={import.meta.env.VITE_CAL_LINK}
+        config={{
+          name: user.fullName,
+          email: user.primaryEmailAddress.emailAddress,
+          userId: user.id,
+          theme: "dark",
+        }}
       />
     </div>
   );

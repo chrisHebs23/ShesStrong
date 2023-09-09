@@ -15,15 +15,15 @@ import PrivacyPolicy from "../pages/privacyPolicy/PrivacyPolicy";
 import Contact from "../pages/contact/Contact";
 import Blog from "../pages/blog/Blog";
 import Post from "../pages/blog/components/Post";
-import { Routes, Route, redirect } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Challenges from "../pages/challenges/Challenges";
 import UserDashboard from "../pages/user/UserDashboard";
-import Onboarding from "../pages/user/components/Onboarding";
 import Subscription from "../pages/user/components/Subscription";
 import SuccessDisplay from "../pages/user/components/SuccessDisplay";
 import { useState, useEffect } from "react";
 
 const Router = () => {
+  const navigate = useNavigate();
   let [message, setMessage] = useState("");
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState("");
@@ -60,7 +60,8 @@ const Router = () => {
           <SignIn
             path="/sign-in"
             signUpUrl="/sign-up"
-            afterSignUpUrl="/onboarding"
+            afterSignUpUrl="/subscription"
+            afterSignInUrl="/user"
           />
         }
       />
@@ -69,7 +70,7 @@ const Router = () => {
         element={
           <SignUp
             path="/sign-up"
-            afterSignUpUrl="/onboarding"
+            afterSignUpUrl="/subscription"
             signInUrl="/sign-in"
           />
         }
@@ -86,22 +87,8 @@ const Router = () => {
             <SignedIn>
               <UserDashboard />
             </SignedIn>
-            <SignedOut>
-              <RedirectToSignIn />
-            </SignedOut>
-          </>
-        }
-      />
-      <Route
-        path="/onboarding"
-        element={
-          <>
-            <SignedIn>
-              <Onboarding />
-            </SignedIn>
-            <SignedOut>
-              <RedirectToSignIn />
-            </SignedOut>
+
+            <SignedOut>{navigate("/sign-in", { replace: true })}</SignedOut>
           </>
         }
       />
@@ -113,7 +100,7 @@ const Router = () => {
               <Subscription />
             </SignedIn>
             <SignedOut>
-              <RedirectToSignIn />
+              <RedirectToSignIn redirectUrl="/sign-in" />
             </SignedOut>
           </>
         }
@@ -126,9 +113,7 @@ const Router = () => {
             <SignedIn>
               <SuccessDisplay sessionId={sessionId} />
             </SignedIn>
-            <SignedOut>
-              <RedirectToSignIn />
-            </SignedOut>
+            <SignedOut>{navigate("/sign-in")}</SignedOut>
           </>
         }
       />
