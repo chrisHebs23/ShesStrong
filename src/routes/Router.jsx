@@ -22,6 +22,9 @@ import Subscription from "../pages/user/components/Subscription";
 import SuccessDisplay from "../pages/user/components/SuccessDisplay";
 import { useState, useEffect } from "react";
 
+import MakeAppointment from "../pages/user/dashboardComponents/MakeAppointment";
+import Dashboard from "../pages/user/dashboardComponents/Dashboard";
+
 const Router = () => {
   const navigate = useNavigate();
   let [message, setMessage] = useState("");
@@ -61,7 +64,6 @@ const Router = () => {
             path="/sign-in"
             signUpUrl="/sign-up"
             afterSignUpUrl="/subscription"
-            afterSignInUrl="/user"
           />
         }
       />
@@ -88,7 +90,9 @@ const Router = () => {
               <UserDashboard />
             </SignedIn>
 
-            <SignedOut>{navigate("/sign-in", { replace: true })}</SignedOut>
+            <SignedOut>
+              <RedirectToSignIn redirectUrl="/sign-in" />
+            </SignedOut>
           </>
         }
       />
@@ -113,7 +117,7 @@ const Router = () => {
             <SignedIn>
               <SuccessDisplay sessionId={sessionId} />
             </SignedIn>
-            <SignedOut>{navigate("/sign-in")}</SignedOut>
+            <SignedOut></SignedOut>
           </>
         }
       />

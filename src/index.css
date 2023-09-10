@@ -54,6 +54,25 @@
   .account-form-input input {
     @apply bg-primary/80 h-[35px] text-secondary px-2;
   }
+
+  table {
+    @apply w-full max-h-[500px] relative bg-secondary/10 -z-10 overflow-scroll;
+  }
+  tr {
+    @apply flex flex-row justify-between z-20;
+  }
+
+  th {
+    @apply border-b-2 w-full p-2 z-20;
+  }
+
+  td {
+    @apply text-center border-b-2 w-full p-2 z-20;
+  }
+
+  #userProfile .cl-userButtonBox {
+    @apply w-[100px] h-[100px];
+  }
 }
 
 .underline-effect {

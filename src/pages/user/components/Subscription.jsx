@@ -1,12 +1,36 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PricingCards from "../../home/components/reusable/PricingCards";
 
 const Subscription = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
+  const navigate = useNavigate();
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      setLoading(true);
+      await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/profile/${user.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${await getToken()}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then(async (data) => {
+          data.subscribed && navigate("/user", { replace: true });
+          setLoading(false);
+        });
+    };
+    checkUser();
+  }, []);
 
   useEffect(() => {
     setLoading(true);
