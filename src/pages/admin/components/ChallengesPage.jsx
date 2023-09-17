@@ -1,35 +1,32 @@
-import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import useDate from "../../../hooks/useDate";
 import { Link } from "react-router-dom";
-import PopUp from "./PopUp";
 import useToastify from "../../../hooks/useToastify";
+import useDate from "../../../hooks/useDate";
+import PopUp from "./PopUp";
 
-const BlogPosts = () => {
-  const [posts, setPosts] = useState([]);
+const ChallengesPage = () => {
+  const [challenges, setChallenges] = useState([]);
   const [loading, setLoading] = useState(false);
   const { returnDate } = useDate();
   const { toastError, toastSuccess } = useToastify();
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState("");
 
-  const fetchBlog = async () => {
+  const fetchChallenges = async () => {
     setLoading(true);
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/blog`, { method: "GET" })
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/challenge`, {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
-        setPosts(data);
+        setChallenges(data);
         setLoading(false);
       });
   };
 
-  useEffect(() => {
-    fetchBlog();
-  }, []);
-
   const handleDelete = async (id) => {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/blog/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/challenge/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -39,7 +36,7 @@ const BlogPosts = () => {
           toastSuccess("Successfully delete post");
           setOpen(false);
           setDeleteId("");
-          fetchBlog();
+          fetchChallenges();
         }
       })
       .catch((err) => {
@@ -48,19 +45,20 @@ const BlogPosts = () => {
       });
   };
 
+  useEffect(() => {
+    fetchChallenges();
+  }, []);
+
   if (loading) {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
 
   return (
     <div>
-      <h2>Blog Posts</h2>
-      <Link>
-        <button className="btn">Add Post</button>
-      </Link>
+      <h2>Challenges</h2>
       <div className="w-full flex flex-col gap-y-5 ">
-        {posts.length > 0 ? (
-          posts.map((post, i) => (
+        {challenges.length > 0 ? (
+          challenges.map((post, i) => (
             <div
               key={i}
               className="bg-secondary/20 flex flex-col md:flex-row gap-5 items-center"
@@ -70,11 +68,11 @@ const BlogPosts = () => {
               </div>
               <h3 className="md:w-1/4">{post.title}</h3>
               <h3 className="md:w-1/4">
-                Posted on: {returnDate(post.createdAt)}
+                Posted on: {returnDate(post.startDate)}
               </h3>
               <div className="w-full md:w-1/4 flex justify-evenly mb-3">
                 <Link
-                  to={`/admin/edit-post/${post._id}`}
+                  to={`/admin/edit-challenges/${post._id}`}
                   className="hover:text-orange-400"
                 >
                   <h3>Edit</h3>
@@ -92,13 +90,12 @@ const BlogPosts = () => {
             </div>
           ))
         ) : (
-          <h3>No Blog Posts yet</h3>
+          <h3>No Blog challenges yet</h3>
         )}
       </div>
-
       {open && <PopUp setOpen={setOpen} method={handleDelete} id={deleteId} />}
     </div>
   );
 };
 
-export default BlogPosts;
+export default ChallengesPage;

@@ -6,7 +6,6 @@ import {
   RedirectToSignIn,
   AuthenticateWithRedirectCallback,
 } from "@clerk/clerk-react";
-
 import Home from "../pages/home/Home";
 import FAQ from "../pages/faq/FAQ";
 import Bookings from "../pages/bookings/Bookings";
@@ -15,37 +14,24 @@ import PrivacyPolicy from "../pages/privacyPolicy/PrivacyPolicy";
 import Contact from "../pages/contact/Contact";
 import Blog from "../pages/blog/Blog";
 import Post from "../pages/blog/components/Post";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Challenges from "../pages/challenges/Challenges";
 import UserDashboard from "../pages/user/UserDashboard";
 import Subscription from "../pages/user/components/Subscription";
 import SuccessDisplay from "../pages/user/components/SuccessDisplay";
-import { useState, useEffect } from "react";
-
+import Admin from "../pages/admin/Admin";
+import Dashboard from "../pages/admin/components/Dashboard";
+import BlogPosts from "../pages/admin/components/BlogPosts";
+import AddPost from "../pages/admin/components/AddPost";
+import ChallengesPage from "../pages/admin/components/ChallengesPage";
+import AddChallenge from "../pages/admin/components/AddChallenge";
+import DashboardUser from "../pages/user/dashboardComponents/Dashboard";
 import MakeAppointment from "../pages/user/dashboardComponents/MakeAppointment";
-import Dashboard from "../pages/user/dashboardComponents/Dashboard";
+import UserSubscription from "../pages/user/dashboardComponents/UserSubscription";
+import UserReview from "../pages/user/dashboardComponents/UserReview";
+import AddReview from "../pages/user/dashboardComponents/AddReview";
 
 const Router = () => {
-  const navigate = useNavigate();
-  let [message, setMessage] = useState("");
-  let [success, setSuccess] = useState(false);
-  let [sessionId, setSessionId] = useState("");
-
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-
-    if (query.get("success")) {
-      setSuccess(true);
-      setSessionId(query.get("session_id"));
-    }
-    if (query.get("canceled")) {
-      setSuccess(false);
-      setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
-    }
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -84,6 +70,7 @@ const Router = () => {
 
       <Route
         path="/user"
+        exact="true"
         element={
           <>
             <SignedIn>
@@ -95,7 +82,14 @@ const Router = () => {
             </SignedOut>
           </>
         }
-      />
+      >
+        <Route path="" element={<DashboardUser />} />
+        <Route path="subscription" element={<UserSubscription />} />
+        <Route path="appointment" element={<MakeAppointment />} />
+        <Route path="subscription" element={<UserSubscription />} />
+        <Route path="review" element={<UserReview />} />
+        <Route path="add-review" element={<AddReview />} />
+      </Route>
       <Route
         path="/subscription"
         element={
@@ -115,12 +109,30 @@ const Router = () => {
         element={
           <>
             <SignedIn>
-              <SuccessDisplay sessionId={sessionId} />
+              <SuccessDisplay />
             </SignedIn>
             <SignedOut></SignedOut>
           </>
         }
       />
+
+      <Route
+        path="/admin"
+        exact="true"
+        element={
+          <SignedIn>
+            <Admin />
+          </SignedIn>
+        }
+      >
+        <Route path="" element={<Dashboard />} />
+        <Route path="blog-posts" element={<BlogPosts />} />
+        <Route path="new-post" element={<AddPost />} />
+        <Route path="edit-post/:id" element={<AddPost />} />
+        <Route path="challenges" element={<ChallengesPage />} />
+        <Route path="add-challenges" element={<AddChallenge />} />
+        <Route path="edit-challenges/:id" element={<AddChallenge />} />
+      </Route>
     </Routes>
   );
 };

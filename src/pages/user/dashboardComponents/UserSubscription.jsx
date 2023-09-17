@@ -1,38 +1,51 @@
 /* eslint-disable react/prop-types */
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 
-const UserSubscription = ({ userData }) => {
+const UserSubscription = () => {
+  const { user } = useUser();
+  const [userData, setUserData] = useState({});
   const { getToken } = useAuth();
   const [subscriptionType, setSubscriptionType] = useState({});
-  const [loading, setLoading] = useState(false);
-  const subscriptions = userData.subscriptions[0];
+  const [subscriptionLoading, setSubscriptionLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(false);
+
+  const fetchPrices = async (data) => {
+    setSubscriptionLoading(true);
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/subscription/${data}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await getToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSubscriptionType(data);
+        setSubscriptionLoading(false);
+      });
+  };
+
+  const getUser = async () => {
+    setUserLoading(true);
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/profile/${user.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await getToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data);
+        setUserLoading(false);
+        fetchPrices(data.subscriptions[0].plan.id);
+      });
+  };
 
   useEffect(() => {
-    setLoading(true);
-
-    const fetchPrices = async () => {
-      await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/subscription/${
-          subscriptions.plan.id
-        }`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${await getToken()}`,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setLoading(false);
-          return setSubscriptionType(data);
-        });
-    };
-
-    fetchPrices();
+    getUser();
   }, []);
 
   const returnDate = (dateItem) => {
@@ -44,13 +57,14 @@ const UserSubscription = ({ userData }) => {
     }).format(date);
   };
 
-  return loading ? (
-    <div>loading</div>
-  ) : (
+  if (userLoading || subscriptionLoading) {
+    return <div>loading</div>;
+  }
+  return (
     <div className="flex flex-col justify-center items-center my-11">
       <h2>{subscriptionType.name} Plan</h2>
       <h3>Sessions a month: {subscriptionType.sessions}</h3>
-      <h3>Next billing date: {returnDate(subscriptions.current_period_end)}</h3>
+      {/* <h3>Next billing date: {returnDate(userData.subscriptions[0])}</h3> */}
       <button
         onClick={() =>
           (window.location.href =

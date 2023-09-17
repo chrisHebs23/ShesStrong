@@ -45,13 +45,18 @@
   label {
     @apply font-display text-2xl;
   }
-  .admin-link {
+  .admin-div {
     @apply flex items-center hover:text-highlight my-5;
+  }
+
+  .admin-div p {
+    @apply hidden md:flex;
   }
   .account-form-input {
     @apply w-full md:w-[45%] flex flex-col;
   }
-  .account-form-input input {
+  input,
+  textarea {
     @apply bg-primary/80 h-[35px] text-secondary px-2;
   }
 
@@ -72,6 +77,20 @@
 
   #userProfile .cl-userButtonBox {
     @apply w-[100px] h-[100px];
+  }
+
+  #blog-form {
+    @apply flex flex-col gap-5;
+  }
+
+  #blog-form .form-div,
+  textarea {
+    @apply flex flex-col;
+  }
+
+  #blog-form input,
+  textarea {
+    @apply md:w-[43%];
   }
 }
 

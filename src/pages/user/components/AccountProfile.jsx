@@ -1,14 +1,11 @@
 /* eslint-disable react/prop-types */
 import { UserProfile, useAuth } from "@clerk/clerk-react";
-import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useNavigate } from "react-router-dom";
 
 const AccountProfile = ({ user, btnTitle, redirectUrl }) => {
   const navigate = useNavigate();
   const { getToken } = useAuth();
-  console.log(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

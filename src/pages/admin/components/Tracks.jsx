@@ -1,33 +1,41 @@
-import {
-  MdOutlinePeopleOutline,
-  MdArticle,
-  MdAddChart,
-  MdNoteAdd,
-} from "react-icons/md";
+import { MdArticle, MdAddChart, MdNoteAdd } from "react-icons/md";
+import { TbHeartPlus } from "react-icons/tb";
 import { LiaTrophySolid } from "react-icons/lia";
-import { Link } from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
 
+import { useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 const Tracks = () => {
+  const { user } = useUser();
   return (
-    <div className="bg-secondary/10 h-full backdrop-blur-lg flex ">
-      <nav className="p-5 flex md:flex-col">
-        <Link to="/admin" className="admin-link">
+    <div className="bg-secondary/10  backdrop-blur-lg flex flex-col justify-center items-center ">
+      <div>
+        {!user ? (
+          <>Loading</>
+        ) : (
+          <div className="w-full flex flex-col justify-center items-center">
+            <div className="w-[150px] h-[150px] rounded-full overflow-hidden my-2">
+              <img src={user.imageUrl} className="w-[150px]" />
+            </div>
+            <h3>{user.firstName}</h3>
+          </div>
+        )}
+      </div>
+      <nav className="p-5 flex gap-5 items-center">
+        <Link to="" className="admin-div">
           <MdAddChart size={35} /> &nbsp; <p>Dashboard</p>
         </Link>
-        <Link to="/admin/clients" className="admin-link">
-          <MdOutlinePeopleOutline size={35} /> &nbsp; <p>Clients</p>
+        <Link to="blog-posts" className="admin-div">
+          <MdNoteAdd size={35} /> &nbsp; <p>Blog Posts</p>
         </Link>
-        <Link to="/admin/blog" className="admin-link">
-          <MdArticle size={35} /> &nbsp; <p>Blog Posts</p>
+        <Link to="new-post" className="admin-div">
+          <MdArticle size={35} /> &nbsp; <p>Add Blog Post</p>
         </Link>
-        <Link to="/admin/posts" className="admin-link">
-          <MdNoteAdd size={35} /> &nbsp; <p>Add Blog Posts</p>
-        </Link>
-        <Link to="/admin/challenges" className="admin-link">
+        <Link to="challenges" className="admin-div">
           <LiaTrophySolid size={35} /> &nbsp; <p>Challenges</p>
         </Link>
-        <img src={logo} className="hidden lg:block" />
+        <Link to="add-challenges" className="admin-div">
+          <TbHeartPlus size={35} /> &nbsp; <p>Add Challenge</p>
+        </Link>
       </nav>
     </div>
   );

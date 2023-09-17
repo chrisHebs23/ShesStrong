@@ -1,16 +1,10 @@
 /* eslint-disable react/prop-types */
 import { FaGear } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ClerkLogin from "../../../components/header/ClerkLogin";
 import { UserButton } from "@clerk/clerk-react";
 
 const UserInfo = ({ user, setCurrentView, currentView }) => {
-  const navData = [
-    { name: "Dashboard", value: "dashboard" },
-    { name: "Appointments", value: "appointments" },
-    { name: "Subscription", value: "subscription" },
-  ];
-
   return (
     <div className="w-full flex flex-col items-center justify-center relative my-3 ">
       <div className="w-[150px] h-[150px] rounded-full overflow-hidden ">
@@ -34,16 +28,31 @@ const UserInfo = ({ user, setCurrentView, currentView }) => {
 
       <div>
         <ul className="flex gap-2 md:gap-5">
-          {navData.map((nav, i) => (
-            <button
-              className={`${currentView === nav.value && "mark "} p-2  text-lg`}
-              key={i}
-              disabled={currentView === nav.value}
-              onClick={() => setCurrentView(nav.value)}
-            >
-              <li>{nav.name}</li>
-            </button>
-          ))}
+          <NavLink
+            to=""
+            className={({ isActive }) => isActive && "text-highlight"}
+            exact="true"
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => isActive && "text-highlight"}
+            to="appointment"
+          >
+            Book Appointment
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => isActive && "text-highlight"}
+            to="subscription"
+          >
+            Subscription
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => isActive && "text-highlight"}
+            to="review"
+          >
+            Review
+          </NavLink>
         </ul>
       </div>
     </div>

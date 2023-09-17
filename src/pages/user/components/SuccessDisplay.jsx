@@ -1,5 +1,3 @@
-import { useAuth, useUser } from "@clerk/clerk-react";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SuccessDisplay = () => {

@@ -21,10 +21,10 @@ const HeroSection = () => {
           <h1 className="font-display text-5xl mb-3 w-full md:w-[65%] lg:w-[50%] xl:w-[45%] ">
             Unleash Your Inner Strength with{" "}
             <strong>She&apos;s Strong: </strong>
-            <mark>Empowering Your Fitness Journey</mark>
+            <span className="mark">Empowering Your Fitness Journey</span>
           </h1>
           <p className="mt-3 w-full md:w-[70%] lg:w-[50%]">
-            Embark on Your Fitness Journey Today! Schedule a Consultation
+            NEmbark on Your Fitness Journey Today! Schedule a Consultation
             Session and Embrace Your Strength with She&apos;s Strong!
           </p>
           {/* Call to action buttons */}

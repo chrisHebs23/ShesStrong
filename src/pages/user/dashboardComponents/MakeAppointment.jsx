@@ -1,26 +1,60 @@
 /* eslint-disable react/prop-types */
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import useToast from "../../../hooks/useToast";
+import useToastify from "../../../hooks/useToastify";
 import { useNavigate } from "react-router-dom";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { useState } from "react";
 
-const MakeAppointment = ({ user, userData, checkUser }) => {
+const MakeAppointment = () => {
   const navigate = useNavigate();
-  const { toastSuccess } = useToast();
+  const { toastSuccess } = useToastify();
+  const { user } = useUser();
+  const { getToken } = useAuth();
+  const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const getUser = async () => {
+    setLoading(true);
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/profile/${user.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await getToken()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        console.log(data);
+        setUserData(data);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   useEffect(() => {
     (async function () {
+      let count = 0;
       const cal = await getCalApi();
       cal("on", {
         action: "bookingSuccessful",
         callback: () => {
-          toastSuccess("Appointment Successfully made! Check your email");
-          checkUser();
+          if (count === 0) {
+            toastSuccess("Appointment Successfully made! Check your email");
+            navigate("/user", { replace: true });
+            count++;
+          }
         },
       });
     })();
-  }, [checkUser, navigate, toastSuccess]);
+  }, []);
 
-  console.log(userData.sessions);
+  if (loading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="h-full w-full flex-col my-10 justify-center items-center">

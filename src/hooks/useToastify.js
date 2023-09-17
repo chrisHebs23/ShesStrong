@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const useToast = () => {
+const useToastify = () => {
   const options = {
     position: "top-right",
     autoClose: 5000,
@@ -20,4 +20,4 @@ const useToast = () => {
 
   return { toastSuccess, toastError };
 };
-export default useToast;
+export default useToastify;
