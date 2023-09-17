@@ -5,6 +5,7 @@ import SessionsBlock from "./SessionsBlock";
 import UpcomingSessions from "./UpcomingSessions";
 import { useEffect } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
+import Loading from "../../../components/Loading";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -34,7 +35,11 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
   return (
     <div className="flex flex-col z-10 relative justify-center items-center gap-10 my-12">

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useNavigate, useParams } from "react-router-dom";
 import useToastify from "../../../hooks/useToastify";
+import Loading from "../../../components/Loading";
 
 const AddPost = () => {
   const { id } = useParams();
@@ -103,7 +104,11 @@ const AddPost = () => {
   };
 
   if (loading) {
-    return <div>Loading </div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   return (

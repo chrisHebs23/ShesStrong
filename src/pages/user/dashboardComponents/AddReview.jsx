@@ -4,6 +4,7 @@ import UploadWidget from "../../../components/UploadWidget";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import useToastify from "../../../hooks/useToastify";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../../../components/Loading";
 
 const AddReview = () => {
   const { id } = useParams();
@@ -21,22 +22,33 @@ const AddReview = () => {
   const fetchData = async (id) => {
     await fetch(`${import.meta.env.VITE_BACKEND_URL}/review/${id}`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${await getToken()}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setRating(data);
-        localStorage.setItem("rating", JSON.stringify(rating));
       });
   };
 
   useEffect(() => {
-    const rating = JSON.parse(localStorage.getItem("blogData"));
+    const rating = JSON.parse(localStorage.getItem("rating"));
     if (id && !rating) {
       fetchData(id);
     }
     if (rating) {
       setRating(rating);
     }
+    const handleUnload = () => {
+      localStorage.removeItem("rating");
+    };
+    window.addEventListener("unload", handleUnload);
+    return () => {
+      window.removeEventListener("unload", handleUnload);
+    };
   }, []);
 
   const handleRatingChange = (newRating) => {
@@ -52,8 +64,8 @@ const AddReview = () => {
     e.preventDefault();
     setLoading(true);
 
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/review`, {
-      method: "POST",
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/review${id && `/${id}`}`, {
+      method: id ? "PUT" : "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${await getToken()}`,
@@ -84,7 +96,11 @@ const AddReview = () => {
   };
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   return (
@@ -107,6 +123,7 @@ const AddReview = () => {
             size={40}
             onChange={handleRatingChange}
             value={rating.rating}
+            color1="#DCDCDC"
             required
           />
 
@@ -114,6 +131,7 @@ const AddReview = () => {
             <label>Review</label>
 
             <textarea
+              maxLength={200}
               required
               name="text"
               rows={5}
@@ -121,6 +139,7 @@ const AddReview = () => {
               onChange={handleTextChange}
               className="md:w-[75%] w-full border-2 border-secondary h-[250px] "
             />
+            <p>Max characters {rating.text.length}/200</p>
           </div>
         </div>
         <button className="btn mx-auto">Add Review</button>

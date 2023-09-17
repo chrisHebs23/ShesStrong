@@ -2,12 +2,13 @@ import { useUser, useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import UserInfo from "./dashboardComponents/UserInfo";
+import Loading from "../../components/Loading";
 
 const UserDashboard = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,24 +26,27 @@ const UserDashboard = () => {
     })
       .then((res) => res.json())
       .then(async (data) => {
-        setUserData(data);
         !data.subscribed && navigate("/subscription", { replace: true });
         setLoading(false);
       });
   };
 
-  if (loading && !userData) {
-    return <div>loading</div>;
-  } else {
+  if (loading) {
     return (
-      <div className="screen-padding w-full h-full relative">
-        <UserInfo user={user} />
-        <div className=" w-full h-full">
-          <Outlet />
-        </div>
+      <div className="h-[500px]">
+        <Loading />
       </div>
     );
   }
+
+  return (
+    <div className="screen-padding w-full h-full relative">
+      <UserInfo user={user} />
+      <div className=" w-full h-full">
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
 export default UserDashboard;

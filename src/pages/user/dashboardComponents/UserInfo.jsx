@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import { FaGear } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
-import ClerkLogin from "../../../components/header/ClerkLogin";
 import { UserButton } from "@clerk/clerk-react";
 
-const UserInfo = ({ user, setCurrentView, currentView }) => {
+const UserInfo = ({ user }) => {
   return (
     <div className="w-full flex flex-col items-center justify-center relative my-3 ">
       <div className="w-[150px] h-[150px] rounded-full overflow-hidden ">
@@ -20,6 +19,7 @@ const UserInfo = ({ user, setCurrentView, currentView }) => {
           }}
           afterSignOutUrl="/"
         />
+        <FaGear />
       </div>
 
       <div className="mt-2">

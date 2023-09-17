@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
+import Loading from "../../../components/Loading";
 
 const UserSubscription = () => {
   const { user } = useUser();
@@ -21,7 +22,6 @@ const UserSubscription = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSubscriptionType(data);
         setSubscriptionLoading(false);
       });
@@ -38,9 +38,10 @@ const UserSubscription = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setUserData(data);
         setUserLoading(false);
-        fetchPrices(data.subscriptions[0].plan.id);
+        fetchPrices(data.subscriptions.plan.id);
       });
   };
 
@@ -58,24 +59,32 @@ const UserSubscription = () => {
   };
 
   if (userLoading || subscriptionLoading) {
-    return <div>loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-col justify-center items-center my-11">
+        <h2>{subscriptionType.name} Plan</h2>
+        <h3>Sessions a month:&nbsp;{subscriptionType.sessions}</h3>
+        <h3>
+          Next billing date:&nbsp;
+          {returnDate(userData.subscriptions?.current_period_end || "")}
+        </h3>
+        <button
+          onClick={() =>
+            (window.location.href =
+              import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL_URL)
+          }
+          className="btn"
+        >
+          Manage Billing
+        </button>
+      </div>
+    );
   }
-  return (
-    <div className="flex flex-col justify-center items-center my-11">
-      <h2>{subscriptionType.name} Plan</h2>
-      <h3>Sessions a month: {subscriptionType.sessions}</h3>
-      {/* <h3>Next billing date: {returnDate(userData.subscriptions[0])}</h3> */}
-      <button
-        onClick={() =>
-          (window.location.href =
-            import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL_URL)
-        }
-        className="btn"
-      >
-        Manage Billing
-      </button>
-    </div>
-  );
 };
 
 export default UserSubscription;

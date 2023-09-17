@@ -5,6 +5,7 @@ import useToastify from "../../../hooks/useToastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
+import Loading from "../../../components/Loading";
 
 const MakeAppointment = () => {
   const navigate = useNavigate();
@@ -53,7 +54,11 @@ const MakeAppointment = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   return (

@@ -2,21 +2,23 @@
 
 import { Link } from "react-router-dom";
 import useDate from "../../../hooks/useDate";
+import Loading from "../../../components/Loading";
 
 const UpcomingSessions = ({ userData, setCurrentView }) => {
   const { returnDate, returnTime } = useDate();
 
   if (userData.length === 0) {
-    return <div>Loading</div>;
+    <div className="h-[500px]">
+      <Loading />
+    </div>;
   }
 
-  console.log(userData.appointments);
   return (
     <div>
       <h2 className="mb-2">Up Coming Sessions</h2>
       <div className="flex flex-col gap-1">
-        {userData.appointments > 0 ? (
-          <table className="flex flex-col justify-between gap-2 ">
+        {userData.appointments.length > 0 ? (
+          <table className="flex flex-col justify-between gap-2 overflow-hidden overflow-y-auto ">
             <tbody>
               <tr>
                 <th>Session Type</th>

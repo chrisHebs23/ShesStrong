@@ -5,6 +5,7 @@ import { useAuth } from "@clerk/clerk-react";
 import useToastify from "../../../hooks/useToastify";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Loading from "../../../components/Loading";
 
 const AddChallenge = () => {
   const { id } = useParams();
@@ -103,8 +104,12 @@ const AddChallenge = () => {
     localStorage.setItem("challengeData", JSON.stringify(challengeData));
   };
 
-  if (loading) {
-    return <div>Loading</div>;
+  if (!loading) {
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   console.log();

@@ -89,6 +89,7 @@ const Router = () => {
         <Route path="subscription" element={<UserSubscription />} />
         <Route path="review" element={<UserReview />} />
         <Route path="add-review" element={<AddReview />} />
+        <Route path="edit-review/:id" element={<AddReview />} />
       </Route>
       <Route
         path="/subscription"
