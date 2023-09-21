@@ -11,6 +11,7 @@ const AddChallenge = () => {
   const { id } = useParams();
   const { getToken } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [challengeData, setChallengeData] = useState({
     title: "",
     description: "",
@@ -23,13 +24,19 @@ const AddChallenge = () => {
   const { toastError, toastSuccess } = useToastify();
 
   const fetchData = async (id) => {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/challenge/${id}`, {
-      method: "GET",
-    })
+    setLoading(true);
+    await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/challenge${id && `/${id}`}`,
+      {
+        method: "GET",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setChallengeData(data);
-      });
+      })
+      .catch((err) => setIsError(true))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -90,7 +97,7 @@ const AddChallenge = () => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err.message);
+
         toastError("Error Occurred please try again later");
       });
   };
@@ -104,7 +111,7 @@ const AddChallenge = () => {
     localStorage.setItem("challengeData", JSON.stringify(challengeData));
   };
 
-  if (!loading) {
+  if (loading) {
     return (
       <div className="h-[500px]">
         <Loading />
@@ -112,16 +119,20 @@ const AddChallenge = () => {
     );
   }
 
-  console.log();
+  if (isError) {
+    <div className="h-[500px]">
+      <h2>Something Went wrong</h2>
+    </div>;
+  }
 
   return (
-    <div className="bg-secondary/20 w-full p-5 flex">
+    <div className="bg-secondary/20 w-full p-5">
       <form
         onSubmit={handleSubmit}
         id="blog-form"
-        className="flex flex-col mx-auto w-full"
+        className="flex flex-col md:flex-row gap-5 flex-wrap w-full"
       >
-        <div className="form-div">
+        <div className="form-div md:w-[45%]">
           <label>Title</label>
           <input
             type="text"
@@ -131,17 +142,8 @@ const AddChallenge = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-div">
-          <label>Description</label>
-          <textarea
-            type="text"
-            id="description"
-            name="description"
-            value={challengeData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-div">
+
+        <div className="form-div md:w-[45%]">
           <label>Banner Image</label>
           <input
             type="text"
@@ -151,18 +153,18 @@ const AddChallenge = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-div">
+        <div className="form-div md:w-[45%]">
           <label>Start Date</label>
           <DatePicker
             type="date"
             id="startDate"
             name="startDate"
-            // value={challengeData.startDate}
             selected={Date.parse(challengeData.startDate)}
             onChange={(date) => handleDateChange("startDate", date)}
+            className="w-full"
           />
         </div>
-        <div className="form-div">
+        <div className="form-div md:w-[45%]">
           <label>End Date</label>
           <DatePicker
             type="text"
@@ -170,9 +172,10 @@ const AddChallenge = () => {
             name="endDate"
             selected={Date.parse(challengeData.endDate)}
             onChange={(date) => handleDateChange("endDate", date)}
+            className="w-full"
           />
         </div>
-        <div className="form-div">
+        <div className="form-div md:w-[45%]">
           <label>Hashtags</label>
           <input
             type="text"
@@ -182,7 +185,19 @@ const AddChallenge = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn w-[45%]">Add Challenge</button>
+        <div className="form-div w-full h-[200px]">
+          <label>Description</label>
+          <textarea
+            type="text"
+            id="description"
+            rows={20}
+            name="description"
+            value={challengeData.description}
+            onChange={handleChange}
+            className="h-full p-2"
+          />
+        </div>
+        <button className="btn w-[45%] mx-auto">Add Challenge</button>
       </form>
     </div>
   );

@@ -34,7 +34,6 @@ const BlogPosts = () => {
     })
       .then((res) => res.json())
       .then((status) => {
-        console.log(status);
         if (status === 204) {
           toastSuccess("Successfully delete post");
           setOpen(false);
@@ -43,7 +42,6 @@ const BlogPosts = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
         toastError("Error occurred ");
       });
   };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const UploadWidget = ({ setRating, rating }) => {
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(true);
 
   useEffect(() => {
     const cldScript = document.getElementById("cloudinaryUploadWidgetScript");
@@ -16,13 +17,11 @@ const UploadWidget = ({ setRating, rating }) => {
     }
   }, [loaded]);
 
-  const processResults = (error, result) => {
-    if (error) {
-      console.log("error", error);
+  const processResults = (err, result) => {
+    if (err) {
+      setError(err);
     }
     if (result && result.event === "success") {
-      console.log(result);
-      console.log("success", result.info.secure_url);
       setRating((prevRating) => ({
         ...prevRating,
         ["imageUrl"]: result.info.secure_url,
@@ -48,7 +47,7 @@ const UploadWidget = ({ setRating, rating }) => {
     <div className="flex flex-col justify-center items-center gap-2 ">
       <div
         style={{ backgroundImage: `url(${rating.imageUrl})` }}
-        className={`w-[200px] h-[200px] rounded-full overflow-hidden bg-[url(${rating.imageUrl})] bg-center bg-cover`}
+        className={`w-[200px] h-[200px] rounded-full overflow-hidden bg-center bg-cover`}
       ></div>
       <button className="btn" type="button" onClick={uploadWidget}>
         Upload File

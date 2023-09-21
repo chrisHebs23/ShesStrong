@@ -1,8 +1,44 @@
-import React from "react";
-import { challenges } from "../../assets/data/challenges";
+import { useState } from "react";
 import ChallengeCard from "./ChallengeCard";
+import { useEffect } from "react";
+import Loading from "../../components/Loading";
 
 const Challenges = () => {
+  const [challenges, setChallenges] = useState([]);
+  const [loading, setLoading] = useState([]);
+
+  const fetchChallenges = async () => {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/challenge`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setChallenges(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchChallenges();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (challenges.length === 0) {
+    return (
+      <div className="screen-padding w-full h-[500px]">
+        <h2>Challenges Coming Soon</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="screen-padding">
       <h2 className="my-5">

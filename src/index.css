@@ -79,18 +79,13 @@
     @apply w-[100px] h-[100px];
   }
 
-  #blog-form {
-    @apply flex flex-col gap-5;
-  }
-
   #blog-form .form-div,
   textarea {
     @apply flex flex-col;
   }
 
-  #blog-form input,
-  textarea {
-    @apply md:w-[43%];
+  #blogBanner p {
+    @apply line-clamp-3 text-xs md:text-sm;
   }
 }
 
@@ -136,4 +131,63 @@
 
 #setting:hover path {
   fill: #48fd4a;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dcdcdc;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.gradient-underline {
+  padding-bottom: 1px;
+  position: relative;
+  text-decoration: none;
+}
+
+.gradient-underline::after {
+  background: #f00;
+  background: #48fd4a;
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+}
+
+.gradient-underline-2 {
+  padding-bottom: 1px;
+  position: relative;
+  text-decoration: none;
+}
+
+.gradient-underline-2::after {
+  background: #f00;
+  background: linear-gradient(
+    111.3deg,
+    rgba(72, 253, 74, 1) 9.6%,
+    rgba(72, 253, 74, 0) 100.6%
+  );
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  height: 4px;
+  width: 100%;
 }

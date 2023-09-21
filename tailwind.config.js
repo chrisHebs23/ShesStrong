@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "hero-image": "url(./src/assets/images/BigLogo.png)",
+        "hero-image":
+          "url(https://res.cloudinary.com/dxkhfuabn/image/upload/v1695152636/BigLogo_qmidjd.png)",
       },
       colors: {
         primary: "#111111",

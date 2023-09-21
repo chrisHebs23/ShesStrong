@@ -26,7 +26,6 @@ const MakeAppointment = () => {
     })
       .then((res) => res.json())
       .then(async (data) => {
-        console.log(data);
         setUserData(data);
         setLoading(false);
       });

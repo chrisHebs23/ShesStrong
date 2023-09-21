@@ -1,9 +1,9 @@
 import React from "react";
-import { dummyUsers } from "../../../assets/data/dummyUsers";
-import { useFetch } from "../../../hooks/useFetch";
+
 import { useAuth } from "@clerk/clerk-react";
 import { useState } from "react";
 import { useEffect } from "react";
+import Loading from "../../../components/Loading";
 
 const Dashboard = () => {
   const { getToken } = useAuth();
@@ -62,62 +62,49 @@ const Dashboard = () => {
     fetchStripeBalance();
   }, []);
 
+  if (loadingBookings || loadingClients || loadingStripe) {
+    <div className="h-[500px]">
+      <Loading />
+    </div>;
+  }
+
   return (
     <div className="flex flex-row justify-between gap-3 flex-wrap">
       <div className="bg-secondary/20 w-full md:w-[32%] flex flex-col items-center">
-        {loadingClients ? (
-          <>Loading</>
-        ) : (
-          <>
-            <h3>Current Clients </h3>
-            <h3>{users.length - 1}</h3>
-            <button
-              className="btn"
-              onClick={() =>
-                (window.location.href = import.meta.env.VITE_CLERK_DASHBOARD)
-              }
-            >
-              View Clients
-            </button>
-          </>
-        )}
+        <h3>Current Clients </h3>
+        <h3>{users.length - 1}</h3>
+        <button
+          className="btn"
+          onClick={() =>
+            (window.location.href = import.meta.env.VITE_CLERK_DASHBOARD)
+          }
+        >
+          View Clients
+        </button>
       </div>
       <div className="bg-secondary/20 w-full md:w-[32%] flex flex-col items-center">
-        {loadingBookings ? (
-          <>loading</>
-        ) : (
-          <>
-            <h3>Appointments</h3>
-            <h3>{appointments.length}</h3>
-            <button
-              className="btn"
-              onClick={() =>
-                (window.location.href = "https://app.cal.com/bookings/upcoming")
-              }
-            >
-              View Appointments
-            </button>
-          </>
-        )}
+        <h3>Appointments</h3>
+        <h3>{appointments.length}</h3>
+        <button
+          className="btn"
+          onClick={() =>
+            (window.location.href = "https://app.cal.com/bookings/upcoming")
+          }
+        >
+          View Appointments
+        </button>
       </div>
       <div className="bg-secondary/20 w-full md:w-[32%] flex flex-col items-center">
-        {loadingStripe ? (
-          <>loading</>
-        ) : (
-          <>
-            <h3>Stripe Earning</h3>
-            <h3>$ {stripe.length > 0 && stripe[0].amount} .00</h3>
-            <button
-              className="btn"
-              onClick={() =>
-                (window.location.href =
-                  "https://dashboard.stripe.com/dashboard")
-              }
-            >
-              View Earning
-            </button>
-          </>
-        )}
+        <h3>Stripe Earning</h3>
+        <h3>$ {stripe.length > 0 && stripe[0].amount} .00</h3>
+        <button
+          className="btn"
+          onClick={() =>
+            (window.location.href = "https://dashboard.stripe.com/dashboard")
+          }
+        >
+          View Earning
+        </button>
       </div>
     </div>
   );

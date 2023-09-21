@@ -4,23 +4,28 @@ import { LiaTrophySolid } from "react-icons/lia";
 
 import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
+import Loading from "../../../components/Loading";
 const Tracks = () => {
   const { user } = useUser();
+
+  if (!user) {
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
+  }
   return (
     <div className="bg-secondary/10  backdrop-blur-lg flex flex-col justify-center items-center ">
       <div>
-        {!user ? (
-          <>Loading</>
-        ) : (
-          <div className="w-full flex flex-col justify-center items-center">
-            <div className="w-[150px] h-[150px] rounded-full overflow-hidden my-2">
-              <img src={user.imageUrl} className="w-[150px]" />
-            </div>
-            <h3>{user.firstName}</h3>
+        <div className="w-full flex flex-col justify-center items-center">
+          <div className="w-[150px] h-[150px] rounded-full overflow-hidden my-2">
+            <img src={user.imageUrl} className="w-[150px]" />
           </div>
-        )}
+          <h3>{user.firstName}</h3>
+        </div>
       </div>
-      <nav className="p-5 flex gap-5 items-center">
+      <nav className="p-5 flex flex-wrap justify-center gap-x-5 items-center">
         <Link to="" className="admin-div">
           <MdAddChart size={35} /> &nbsp; <p>Dashboard</p>
         </Link>

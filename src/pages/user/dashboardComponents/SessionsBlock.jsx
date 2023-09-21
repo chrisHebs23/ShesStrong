@@ -3,7 +3,6 @@
 import { Link } from "react-router-dom";
 
 const SessionsBlock = ({ userData }) => {
-  console.log(userData);
   let percentage = Math.round(
     (userData.sessions / userData.totalSessions) * 100
   );
@@ -31,6 +30,15 @@ const SessionsBlock = ({ userData }) => {
       </div>
 
       <h2 className="mt-5">Available Sessions</h2>
+      <button
+        onClick={() =>
+          (window.location.href =
+            import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL_URL)
+        }
+        className="btn"
+      >
+        Manage Billing
+      </button>
     </div>
   );
 };

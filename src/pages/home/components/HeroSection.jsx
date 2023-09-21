@@ -1,13 +1,15 @@
-// import React from "react";
-import workout from "../../../assets/video/workout.mp4";
+import { useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const HeroSection = () => {
+  const { user } = useUser();
   return (
     <section className="relative h-[700px] w-full mb-14 mt-0">
       {/* Video background */}
-      <div className="absolute w-full h-full overflow-hidden">
+      <div className="absolute w-full h-full overflow-">
         <video
-          src={workout}
+          src="https://res.cloudinary.com/dxkhfuabn/video/upload/v1695152399/workout_wow8gr.mp4"
           autoPlay
           loop
           muted
@@ -17,20 +19,29 @@ const HeroSection = () => {
       </div>
       <div className="relative z-10 flex justify-start screen-padding items-center h-full ">
         {/* Hero text */}
-        <div className="w-full md:w-[75%] flex flex-col ">
-          <h1 className="font-display text-5xl mb-3 w-full md:w-[65%] lg:w-[50%] xl:w-[45%] ">
+        <div className="w-full md:w-[80%] flex flex-col ">
+          <h1 className="font-display text-5xl mb-3 w-full md:[75%] lg:w-[55%] ">
             Unleash Your Inner Strength with{" "}
-            <strong>She&apos;s Strong: </strong>
-            <span className="mark">Empowering Your Fitness Journey</span>
+            <strong>
+              <nobr>She&apos;s Strong:</nobr>{" "}
+            </strong>
+            <span className="gradient-underline">
+              <nobr>Empowering Your </nobr>
+            </span>
+            <span className="gradient-underline-2">Fitness</span>
           </h1>
           <p className="mt-3 w-full md:w-[70%] lg:w-[50%]">
-            NEmbark on Your Fitness Journey Today! Schedule a Consultation
+            Embark on Your Fitness Journey Today! Schedule a Consultation
             Session and Embrace Your Strength with She&apos;s Strong!
           </p>
           {/* Call to action buttons */}
-          <div className="flex items-center flex-wrap-reverse">
-            <button className="btn flex items-center mr-5">Learn more</button>
-            <button className="btn-2">Book Appointment</button>
+          <div className="flex items-center flex-wrap-reverse ">
+            <HashLink to="/#about">
+              <button className="btn flex items-center mr-5">Learn more</button>
+            </HashLink>
+            <Link to={user ? "user/appointment" : "sign-up"}>
+              <button className="btn-2">Book Appointment</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,22 +1,21 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 
 const ChallengeCard = ({ challenge }) => {
   return (
     <div className="grid grid-cols-1 justify-items-center ">
-      <div className="w-full h-[320px]  overflow-hidden relative">
+      <div className="w-full h-[320px] overflow-hidden relative">
         <img
-          src={challenge.image}
+          src={challenge.bannerImage}
           className="object-cover w-full object-top h-full"
-          alt={challenge.name + " picture"}
+          alt={challenge.title + " picture"}
           loading="lazy"
         />
       </div>
       <div className="text-center my-5 flex flex-col gap-2">
-        <h3>{challenge.name}</h3>
+        <h3>{challenge.title}</h3>
 
         <p>Start Date: {challenge.startDate}</p>
-        <p>Hashtag: {challenge.hashtag}</p>
+        <p>Hashtag: {challenge.hashtags}</p>
         <p>{challenge.description}</p>
       </div>
     </div>

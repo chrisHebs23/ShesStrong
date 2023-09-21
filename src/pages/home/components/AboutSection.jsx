@@ -1,5 +1,3 @@
-import logo from "../../../assets/images/logo.png";
-
 const AboutSection = () => {
   return (
     <section className="w-full my-8">
@@ -30,7 +28,11 @@ const AboutSection = () => {
           </p>
         </div>
         <div className="w-full xlg:w-[35%] lg:w-[35%] md:w-[45%] flex justify-center ">
-          <img src={logo} alt="She's Strong Logo" />
+          <img
+            src="https://res.cloudinary.com/dxkhfuabn/image/upload/v1695152646/logo_xtllya.png"
+            alt="She's Strong Logo"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>

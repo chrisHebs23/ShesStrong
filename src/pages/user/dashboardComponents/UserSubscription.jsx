@@ -38,7 +38,6 @@ const UserSubscription = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUserData(data);
         setUserLoading(false);
         fetchPrices(data.subscriptions.plan.id);

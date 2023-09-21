@@ -13,6 +13,7 @@ const AddPost = () => {
   const editorRef = useRef(null);
   const { toastError, toastSuccess } = useToastify();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const [blogData, setBlogData] = useState({
     title: "",
@@ -20,20 +21,27 @@ const AddPost = () => {
     text: "",
   });
 
-  const fetchData = async (id) => {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/blog/${id}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
+  const fetchData = async () => {
+    setLoading(true);
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/blog/${id}`)
+      .then(async (res) => await res.json())
       .then((data) => {
-        setBlogData(data);
-      });
+        setBlogData({
+          title: data.title,
+          bannerImage: data.bannerImage,
+          text: data.text,
+        });
+      })
+      .catch((err) => {
+        setError(true);
+      })
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     const blogData = JSON.parse(localStorage.getItem("blogData"));
     if (id && !blogData) {
-      fetchData(id);
+      fetchData();
     }
     if (blogData) {
       setBlogData(blogData);
@@ -42,7 +50,7 @@ const AddPost = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(editorRef.current.getContent());
+
     setBlogData((prevBlogData) => ({
       ...prevBlogData,
       [name]: value,
@@ -52,7 +60,6 @@ const AddPost = () => {
   };
 
   const handleTextChange = (content) => {
-    console.log(content);
     setBlogData((prevBlogData) => ({
       ...prevBlogData,
       ["text"]: content,
@@ -65,9 +72,14 @@ const AddPost = () => {
     e.preventDefault();
     setLoading(true);
 
-    let slug = blogData.title.toLowerCase().replace(" ", "-");
+    let slug = blogData.title
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "");
+
     let authorImage = user.imageUrl;
 
+    //
     await fetch(`${import.meta.env.VITE_BACKEND_URL}/blog${id && `/${id}`}`, {
       method: id ? "PUT" : "POST",
       headers: {
@@ -76,31 +88,30 @@ const AddPost = () => {
       },
       body: JSON.stringify({
         title: blogData.title,
-        slug,
+        slug: slug,
         authorImage,
         bannerImage: blogData.bannerImage,
         text: blogData.text,
-        updatedAt: id && Date.now(),
+        updatedAt: Date.now(),
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         toastSuccess(
-          !data.title
+          !data
             ? `${blogData.title} Successfully updated `
             : `${data.title} Successfully added`
         );
         localStorage.removeItem("blogData");
         setTimeout(() => {
-          setLoading(true);
+          setLoading(false);
           navigate("/admin/blog-posts", { replace: true });
         }, 5000);
       })
       .catch((err) => {
-        setLoading(false);
-        console.log(err.message);
         toastError("Error Occurred please try again later");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   if (loading) {
@@ -111,9 +122,17 @@ const AddPost = () => {
     );
   }
 
+  if (error) {
+    return <div className="h-[500px]">Something went wrong</div>;
+  }
+
   return (
     <div className=" bg-secondary/20 w-full p-5">
-      <form id="blog-form" className="w-full" onSubmit={handleSubmit}>
+      <form
+        id="blog-form"
+        className="w-full flex flex-col gap-5"
+        onSubmit={handleSubmit}
+      >
         <div className="form-div">
           <label>Title</label>
           <input

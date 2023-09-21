@@ -21,7 +21,6 @@ const UserReview = () => {
     })
       .then((res) => res.json())
       .then((status) => {
-        console.log(status);
         if (status === 204) {
           toastSuccess("Successfully delete post");
           setOpen(false);
@@ -30,7 +29,6 @@ const UserReview = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
         toastError("Error occurred ");
       });
   };
@@ -46,7 +44,7 @@ const UserReview = () => {
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
-        console.log(data);
+
         setReview(data);
       })
       .catch((err) => {

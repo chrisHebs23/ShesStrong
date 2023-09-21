@@ -1,8 +1,18 @@
 /* eslint-disable react/prop-types */
 
-const PricingCards = ({ price, handleSubmit }) => {
+import { useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
+
+const PricingCards = ({ price }) => {
+  const { user } = useUser();
   return (
-    <div className="card md:grid-rows-[100px_75px_10px_240px_80px]">
+    <div
+      className={`card ${
+        !user
+          ? "md:grid-rows-[100px_75px_10px_240px_60px]"
+          : "md:grid-rows-[100px_75px_10px_240px]"
+      }`}
+    >
       <div className="flex flex-col justify-center items-center h-[100px] text-center">
         <h3>{price.name}</h3>
         <h3>{price.sessions > 0 ? price.sessions + " Sessions" : "-"}</h3>
@@ -27,12 +37,9 @@ const PricingCards = ({ price, handleSubmit }) => {
         </div>
       )}
 
-      <button
-        onClick={() => handleSubmit(price)}
-        className="btn bottom-0 items-end"
-      >
-        Get Fit
-      </button>
+      <Link to="/sign-up">
+        <button className="btn bottom-0 items-end">Get Fit</button>
+      </Link>
     </div>
   );
 };

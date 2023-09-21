@@ -7,17 +7,11 @@ import Loading from "../../../components/Loading";
 const UpcomingSessions = ({ userData, setCurrentView }) => {
   const { returnDate, returnTime } = useDate();
 
-  if (userData.length === 0) {
-    <div className="h-[500px]">
-      <Loading />
-    </div>;
-  }
-
   return (
     <div>
       <h2 className="mb-2">Up Coming Sessions</h2>
       <div className="flex flex-col gap-1">
-        {userData.appointments.length > 0 ? (
+        {userData.appointments.length ? (
           <table className="flex flex-col justify-between gap-2 overflow-hidden overflow-y-auto ">
             <tbody>
               <tr>

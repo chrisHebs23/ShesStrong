@@ -31,7 +31,7 @@ const UserInfo = ({ user }) => {
           <NavLink
             to=""
             className={({ isActive }) => isActive && "text-highlight"}
-            exact="true"
+            end
           >
             Dashboard
           </NavLink>

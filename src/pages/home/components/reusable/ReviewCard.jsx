@@ -9,25 +9,20 @@ const ReviewCard = ({ review }) => {
     stars[i] = <FaStar className="star" key={i} size={30} />;
   }
   if (review.rating % 1 != 0) {
-    stars[i - 1] = (
-      <FaStarHalf className="star border border-primary" key={i} size={30} />
-    );
+    stars[i - 1] = <FaStarHalf className="star" key={i} size={30} />;
   }
   // if value is a decimal, add a half star
 
   return (
-    <div className="md:w-[360px] w-[300px] relative grid grid-cols-1 justify-items-center ">
-      <div className="overflow-hidden w-[200px] h-[200px] bg-cover rounded-full relative">
-        <img
-          src={review.img}
-          alt={review.name + " profile picture"}
-          loading="lazy"
-        />
-      </div>
+    <div className="md:w-[360px] w-[250px] relative grid grid-cols-1 justify-items-center ">
+      <div
+        style={{ backgroundImage: `url(${review.imageUrl})` }}
+        className={`w-[200px] h-[200px] rounded-full overflow-hidden bg-center bg-cover`}
+      ></div>
       <div className="flex w-full justify-center -mt-[20px] z-10 ">{stars}</div>
       <div className="my-5 flex flex-col text-center ">
         <h3>{review.name}</h3>
-        <p>{review.review}</p>
+        <p>{review.text}</p>
       </div>
     </div>
   );

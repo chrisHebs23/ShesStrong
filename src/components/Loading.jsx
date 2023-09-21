@@ -1,4 +1,3 @@
-import React from "react";
 import spinner from "../assets/images/logoImg.png";
 
 const Loading = () => {

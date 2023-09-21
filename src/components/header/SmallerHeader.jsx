@@ -33,7 +33,7 @@ const SmallerHeader = ({ links }) => {
             className="cursor-pointer w-12 z-10"
             size={40}
           />
-          <div className="fixed flex flex-col w-screen h-screen justify-center items-center bg-primary/70 left-0 top-0  ">
+          <div className="fixed flex flex-col w-[50%] right-0 h-screen justify-center pl-[20px] bg-primary/80 backdrop-blur-sm  top-0  ">
             {links.map((link) =>
               link.hash ? (
                 <HashLink
@@ -60,6 +60,10 @@ const SmallerHeader = ({ links }) => {
             )}
             <ClerkLogin handleOpen={handleOpen} />
           </div>
+          <div
+            onClick={handleOpen}
+            className="absolute -z-10  w-screen h-screen left-0"
+          ></div>
         </div>
       )}
     </nav>
