@@ -23,14 +23,6 @@ const Challenges = () => {
     fetchChallenges();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="h-[500px]">
-        <Loading />
-      </div>
-    );
-  }
-
   if (challenges.length === 0) {
     return (
       <div className="screen-padding w-full h-[500px]">
@@ -55,13 +47,19 @@ const Challenges = () => {
         for the most dedicated challengers. Let&apos;s show &apos;em how we
         slay, fam!
       </p>
-      <div className="flex flex-wrap my-5 gap-y-5 justify-between">
-        {challenges.map((challenge, i) => (
-          <div key={i} className="lg:w-[32%] w-full md:w-[48%] ">
-            <ChallengeCard challenge={challenge} />
-          </div>
-        ))}
-      </div>
+      {loading ? (
+        <div className="h-[500px]">
+          <Loading />
+        </div>
+      ) : (
+        <div className="flex flex-wrap my-5 gap-y-5 justify-between">
+          {challenges.map((challenge, i) => (
+            <div key={i} className="lg:w-[32%] w-full md:w-[48%] ">
+              <ChallengeCard challenge={challenge} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

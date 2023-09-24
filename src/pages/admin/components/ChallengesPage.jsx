@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useToastify from "../../../hooks/useToastify";
 import useDate from "../../../hooks/useDate";
 import PopUp from "./PopUp";
+import Loading from "../../../components/Loading";
 
 const ChallengesPage = () => {
   const [challenges, setChallenges] = useState([]);
@@ -48,7 +49,11 @@ const ChallengesPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   return (

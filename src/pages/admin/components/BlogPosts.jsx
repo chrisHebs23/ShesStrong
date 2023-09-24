@@ -5,6 +5,7 @@ import useDate from "../../../hooks/useDate";
 import { Link } from "react-router-dom";
 import PopUp from "./PopUp";
 import useToastify from "../../../hooks/useToastify";
+import Loading from "../../../components/Loading";
 
 const BlogPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -47,7 +48,11 @@ const BlogPosts = () => {
   };
 
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <div className="h-[500px]">
+        <Loading />
+      </div>
+    );
   }
 
   return (

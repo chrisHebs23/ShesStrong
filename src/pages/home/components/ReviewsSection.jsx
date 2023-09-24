@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const ReviewsSection = () => {
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchReviews = async () => {
     await fetch(`${import.meta.env.VITE_BACKEND_URL}/review`, {
@@ -23,13 +23,6 @@ const ReviewsSection = () => {
     fetchReviews();
   }, []);
 
-  if (loading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
   return (
     <section className="">
       <h2 className="my-5">
@@ -37,11 +30,17 @@ const ReviewsSection = () => {
       </h2>
       <div className="w-full relative">
         <div className="w-full flex flex-nowrap overflow-hidden overflow-x-auto justify-between gap-16 scroll-smooth snap-x">
-          {reviews.map((review, i) => (
-            <div key={i} className="w-full relative snap-center ">
-              <ReviewCard review={review} />
+          {loading ? (
+            <div className="h-[500px]">
+              <Loading />
             </div>
-          ))}
+          ) : (
+            reviews.map((review, i) => (
+              <div key={i} className="w-full relative snap-center ">
+                <ReviewCard review={review} />
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>

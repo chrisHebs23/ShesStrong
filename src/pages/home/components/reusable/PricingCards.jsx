@@ -3,7 +3,7 @@
 import { useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
-const PricingCards = ({ price }) => {
+const PricingCards = ({ price, handleSubmit }) => {
   const { user } = useUser();
   return (
     <div
@@ -37,9 +37,18 @@ const PricingCards = ({ price }) => {
         </div>
       )}
 
-      <Link to="/sign-up">
-        <button className="btn bottom-0 items-end">Get Fit</button>
-      </Link>
+      {!user ? (
+        <Link to="/sign-up">
+          <button className="btn bottom-0 items-end">Get Fit</button>
+        </Link>
+      ) : (
+        <button
+          onClick={() => handleSubmit(price)}
+          className="btn bottom-0 items-end"
+        >
+          Get Fit
+        </button>
+      )}
     </div>
   );
 };
