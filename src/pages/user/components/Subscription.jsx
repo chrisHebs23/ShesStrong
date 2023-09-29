@@ -70,7 +70,9 @@ const Subscription = () => {
       }
     )
       .then((res) => res.json())
-      .then((session) => window.location.assign(session.url))
+      .then((session) => {
+        window.location.assign(session.url);
+      })
       .catch((err) => {
         console.log({ error: err.message });
       });

@@ -23,6 +23,10 @@ const ReviewsSection = () => {
     fetchReviews();
   }, []);
 
+  if (reviews.length === 0) {
+    return <></>;
+  }
+
   return (
     <section className="">
       <h2 className="my-5">

@@ -64,7 +64,11 @@ const MakeAppointment = () => {
     <div className="h-full w-full flex-col my-10 justify-center items-center">
       {userData.sessions > 0 ? (
         <Cal
-          calLink={import.meta.env.VITE_CAL_LINK}
+          calLink={
+            userData.subscriptionType === "virtual"
+              ? import.meta.env.VITE_CAL_LINK_VIRTUAL
+              : import.meta.env.VITE_CAL_LINK_SUBSCRIPTION
+          }
           config={{
             name: user.fullName,
             email: user.primaryEmailAddress.emailAddress,

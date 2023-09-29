@@ -27,8 +27,9 @@ const UserDashboard = () => {
       .then((res) => res.json())
       .then(async (data) => {
         !data.subscribed && navigate("/subscription", { replace: true });
-        setLoading(false);
-      });
+      })
+      .catch((err) => console.log(err.message))
+      .finally(() => setLoading(false));
   };
 
   if (loading) {

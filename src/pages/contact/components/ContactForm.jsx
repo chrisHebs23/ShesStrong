@@ -1,25 +1,30 @@
-import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { useRef } from "react";
+import useToastify from "../../../hooks/useToastify";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const form = useRef();
+  const { toastError, toastSuccess } = useToastify();
+  const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        "YOUR_PUBLIC_KEY"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         (result) => {
-          console.log(result.text);
+          toastSuccess("Email sent!");
+          navigate("/", { replace: true });
         },
         (error) => {
-          console.log(error.text);
+          toastError("Error occurred please try again later");
         }
       );
   };
@@ -42,11 +47,20 @@ const ContactForm = () => {
               <label>Email:</label>
               <input
                 type="email"
-                name="user_email"
+                name="email"
                 className="bg-primary/80 h-[35px]"
                 required
               />
             </div>
+          </div>
+          <div className="flex flex-col w-full">
+            <label>Subject:</label>
+            <input
+              type="text"
+              name="subject"
+              className="bg-primary/80 h-[35px]"
+              required
+            />
           </div>
           <div className="flex flex-col my-5">
             <label>Message</label>

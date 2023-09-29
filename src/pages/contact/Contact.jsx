@@ -14,8 +14,8 @@ const Contact = () => {
         and we&apos;ll have a chat that&apos;s as smooth as your post-workout
         protein shake. No question is too big or too small U+2013 we&apos;re all
         about sharing fitness knowledge and having a blast while we&apos;re at
-        it. So hit us up and let&apos;s chat U+2013 your fitness journey starts
-        with a simple &apos;Hello!&apos;
+        it. So hit us up and let&apos;s your fitness journey starts with a
+        simple &apos;Hello!&apos;
       </p>
       <div className="bg-secondary/10 backdrop-blur-md w-full md:w-3/4 m-auto">
         <ContactForm />

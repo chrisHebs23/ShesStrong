@@ -43,9 +43,7 @@ const DashboardUser = lazy(() =>
 const MakeAppointment = lazy(() =>
   import("../pages/user/dashboardComponents/MakeAppointment")
 );
-const UserSubscription = lazy(() =>
-  import("../pages/user/dashboardComponents/UserSubscription")
-);
+
 const UserReview = lazy(() =>
   import("../pages/user/dashboardComponents/UserReview")
 );
@@ -285,21 +283,7 @@ const Router = () => {
             </Suspense>
           }
         />
-        <Route
-          path="subscription"
-          exact
-          element={
-            <Suspense
-              fallback={
-                <div className="w-full h-screen">
-                  <Loading />
-                </div>
-              }
-            >
-              <UserSubscription />
-            </Suspense>
-          }
-        />
+
         <Route
           path="appointment"
           element={
@@ -314,20 +298,7 @@ const Router = () => {
             </Suspense>
           }
         />
-        <Route
-          path="subscription"
-          element={
-            <Suspense
-              fallback={
-                <div className="w-full h-screen">
-                  <Loading />
-                </div>
-              }
-            >
-              <UserSubscription />
-            </Suspense>
-          }
-        />
+
         <Route
           path="review"
           element={

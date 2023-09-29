@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { FaGear } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { UserButton } from "@clerk/clerk-react";
 
@@ -13,18 +12,26 @@ const UserInfo = ({ user }) => {
             elements: {
               rootBox: "absolute top-0 w-[150px] h-[150px]",
               userButtonBox: "w-[150px] h-[150px]",
-              userButtonTrigger: " w-[150px] h-[150px]",
-              avatarBox: " hidden w-[150px] h-[150px]",
+              userButtonTrigger: "w-[150px] h-[150px]",
+              avatarBox: "hidden w-[150px] h-[150px]",
             },
           }}
           afterSignOutUrl="/"
         />
-        <FaGear />
       </div>
 
       <div className="mt-2">
         <h3>{user.firstName}</h3>
       </div>
+      <button
+        onClick={() =>
+          (window.location.href =
+            import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL_URL)
+        }
+        className="btn"
+      >
+        Manage Billing
+      </button>
 
       <div>
         <ul className="flex gap-2 md:gap-5">
@@ -41,12 +48,7 @@ const UserInfo = ({ user }) => {
           >
             Book Appointment
           </NavLink>
-          <NavLink
-            className={({ isActive }) => isActive && "text-highlight"}
-            to="subscription"
-          >
-            Subscription
-          </NavLink>
+
           <NavLink
             className={({ isActive }) => isActive && "text-highlight"}
             to="review"
